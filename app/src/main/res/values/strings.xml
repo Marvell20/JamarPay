@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">JamarPay</string>
+    <string name="txt_bienvenida">¡Te damos la bienvenida!</string>
+    <string name="txt_apporo">A la App ORO de Jamar, donde podrás realizar tu autogestión.</string>
+    <string name="txt_ingresadoc">Primero, ingresa tu número de documento y daremos el siguiente paso a verificar tu identidad.</string>
+    <string name="txt_chbox">Aceptar términos y condiciones</string>
+    <string name="txt_button">Verifica mi identidad</string>
+    <string name="txt_aceptar">Aceptar</string>
+    <string name="txt_rechazar">Rechazar</string>
+    <string name="txt_terms_conditions_header">Términos y condiciones</string>
+    <string name="txt_terms_conditions_body">TERMINOS Y CONDICIONES LEGALES DEL USO DE LA APLICACIÓN WEB\n¿QUIÉNES SOMOS?\n\nEl sitio web que estás visitando es propiedad de muebles jamar s.a., esta sociedad se encuentra identificada con el nit 900.061.516-4, su dirección de notificaciones judicial es: calle 35 No 39-73 de la ciudad de barranquilla (Colombia), teléfono 018000935111 ó Email: <a href="mailto:servicioweb@mueblesjamar.com"><u>servicioweb@mueblesjamar.com</u></a>\n\nAl ingresar, revisar y comprar en este sitio web te comprometes a leer, informarte y cumplir los términos y condiciones de uso, además te obliga a respetar las políticas de privacidad. De conformidad con la legislación colombiana sobre el tema, pues el contenido, productos y ofertas que encuentras en www.jamar.com.co aplican únicamente para Colombia.\n\nEste documento describe los términos y condiciones generales y las políticas de privacidad aplicables al acceso y uso de los servicios ofrecidos por MUEBLES JAMAR S.A dentro del sitio www.jamar.com, y/u otros dominios (urls) relacionados, en donde estos términos y condiciones se encuentren.
+    </string>
+    <string name="txt_loading_progressbar">Espera unos segundos, mientras validamos tu identidad.</string>
+</resources>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12sp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/TermsAndConditionsHeaderTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_terms_conditions_header"
+                android:textColor="@color/terms_and_conditions_header"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/lato"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/TermsAndConditionsBodyTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="427dp"
+                android:layout_marginTop="40dp"
+                android:justificationMode="inter_word"
+                android:scrollbars = "vertical"
+                android:text="@string/txt_terms_conditions_body"
+                android:textColor="@color/down_arrow"
+                android:textSize="16sp"
+                app:fontFamily="@font/lato"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/TermsAndConditionsAcceptButton"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/darker_blue"
+                android:text="@string/txt_aceptar"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="24dp"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:cornerRadius="24sp"
+                app:fontFamily="@font/lato"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TermsAndConditionsBodyTextView" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/TermsAndConditionsCancelButton"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:text="@string/txt_rechazar"
+                android:textAllCaps="false"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="24dp"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:cornerRadius="24sp"
+                app:fontFamily="@font/lato"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TermsAndConditionsAcceptButton" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
