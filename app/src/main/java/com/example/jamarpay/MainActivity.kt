@@ -1,14 +1,27 @@
 package com.example.jamarpay
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.Toast
+import android.os.Handler
+import android.os.Looper
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
 import common.DialogTermsAndConditions
 import common.DialogTermsAndConditions.DialogFragmentListener
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity(), DialogFragmentListener {
+
+    private lateinit var checkBox: CheckBox
+    private lateinit var btnNext: Button
+    private lateinit var checkBoxText: TextView
 
     override fun onAcceptClicked() {
         checkBox.isChecked = true
@@ -20,38 +33,88 @@ class MainActivity : AppCompatActivity(), DialogFragmentListener {
         };
     }
 
-    private lateinit var checkBox: CheckBox
-    private lateinit var btnNext: Button
+    private val secondScope = CoroutineScope(Dispatchers.IO)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        checkBox = findViewById(R.id.checkBox)
-        btnNext = findViewById(R.id.button)
+        val handler = Handler(Looper.getMainLooper())
 
-        btnNext.setOnClickListener {
+        setContentView(R.layout.splash)
 
-            if (checkBox.isChecked) {
-                //Toast.makeText(this, "¡CheckBox marcado! Puedes avanzar a la siguiente pantalla.", Toast.LENGTH_SHORT).show()
-                setContentView(R.layout.loading_view)
-            } else {
-                Toast.makeText(this, "Por favor, acepta los términos y condiciones.", Toast.LENGTH_SHORT).show()
+        handler.postDelayed({ // inflar el segundo archivo de diseño XML en la vista principal
+            setContentView(R.layout.login)
+
+            checkBox = findViewById(R.id.checkBox)
+            checkBoxText = findViewById(R.id.checkBoxText)
+            btnNext = findViewById(R.id.button)
+
+            checkBox.isClickable = false
+
+            btnNext.setOnClickListener {
+
+                if (checkBox.isChecked) {
+                    setContentView(R.layout.loading_view)
+                } else {
+                    Toast.makeText(this, "Por favor, acepta los términos y condiciones.", Toast.LENGTH_SHORT).show()
+                }
             }
-        }
 
-        checkBox.setOnClickListener {
-            val dialogFragment  = DialogTermsAndConditions()
-            dialogFragment.show(supportFragmentManager, "customDialog")
-        }
-    }
+            checkBoxText.setOnClickListener {
+                val dialogFragment  = DialogTermsAndConditions()
+                dialogFragment.show(supportFragmentManager, "customDialog")
+            }
 
-    private fun mostrarModalTerminosCondiciones() {
-        val dialogFragment = DialogTermsAndConditions()
-        dialogFragment.show(supportFragmentManager, "termsAndConditionsDialog")
-    }
+            //BREINER
 
-    private fun ocultarModalTerminosCondiciones() {
-        // Aquí puedes implementar la lógica para ocultar el modal con los términos y condiciones
+
+            secondScope.launch {
+
+                val retrofit = Retrofit.Builder()
+                    .baseUrl("https://16oardvn23.execute-api.us-east-1.amazonaws.com")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+
+                val gettingDocumentType = retrofit.create(ApiService::class.java)
+                val documentType = gettingDocumentType.getDocumentType("JA")
+                Log.i("DocumentType", documentType.body().toString())
+                val documentTypeList: List<DocumentTypeItem> = documentType.body()?.data ?: emptyList()
+                val labels = documentTypeList.map { it.label }
+                val mySpinner = findViewById<Spinner>(R.id.my_spinner)
+                Log.i("Label", labels.toString())
+                handler.post {
+                    val adapter =
+                        ArrayAdapter(this@MainActivity, android.R.layout.simple_spinner_item, labels)
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    mySpinner.adapter = adapter
+                }
+
+                val editText = findViewById<EditText>(R.id.editTextTextPersonName)
+                val button = findViewById<MaterialButton>(R.id.button)
+                button.isEnabled = false
+
+                editText.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        count: Int,
+                        after: Int
+                    ) {
+                        // No se usa
+                    }
+
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                        button.isEnabled = !s.isNullOrEmpty()
+                    }
+
+                    override fun afterTextChanged(s: Editable?) {
+                        // No se usa
+                    }
+                })
+            }
+
+        }, 3000) // tiempo de retraso en milisegundos (5 segundos)
+
+        //setContentView(R.layout.login)
     }
 }
