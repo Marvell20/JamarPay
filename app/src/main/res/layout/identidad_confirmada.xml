@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/IdentidadConfirmadaLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,7 +63,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:text="Hemos confirmado que se trata de ti.\n
-Antes de continuar, necesitamos que\n registres este teléfono."
+Hasta aqui llega nuestra primera versión,\n gracias por confiar en nosotros."
             android:textColor="@color/down_arrow"
             android:layout_marginTop="12dp"
             android:textSize="18sp"
@@ -80,7 +82,8 @@ Antes de continuar, necesitamos que\n registres este teléfono."
             android:textSize="20sp"
             android:textStyle="bold"
             app:cornerRadius="24sp"
-            app:fontFamily="@font/lato" />
+            app:fontFamily="@font/lato"
+            android:visibility="gone"/>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

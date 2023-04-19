@@ -7,28 +7,36 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import com.example.jamarpay.MainActivity
 import com.example.jamarpay.R
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonObject
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.io.IOException
 import java.net.NetworkInterface
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
 class DialogTermsAndConditions: DialogFragment() {
-
     data class Response(
         val success: Boolean,
         val data: Data,
@@ -64,6 +72,10 @@ class DialogTermsAndConditions: DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        val mainActivity = activity as MainActivity
+        val cedula = mainActivity.getEditTextValue()
+
         var rootView: View = inflater.inflate(R.layout.dialog_terms_and_conditions, container, false)
 
         dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -76,22 +88,23 @@ class DialogTermsAndConditions: DialogFragment() {
 
         btnCancel.setOnClickListener {
             listener!!.onCancelClicked()
-            guardarRespuestaTermsNConditions("N")
+            guardarRespuestaTermsNConditions(cedula, "R", "N")
             dialog!!.dismiss()
         }
 
         btnAccept.setOnClickListener {
             listener!!.onAcceptClicked()
-            guardarRespuestaTermsNConditions("A")
+
+
+
+            guardarRespuestaTermsNConditions(cedula,"A", "A")
             dialog!!.dismiss()
         }
 
         val textView = rootView.findViewById<MaterialTextView>(R.id.TermsAndConditionsBodyTextView)
         val handler = Handler(Looper.getMainLooper())
-        // Crear una instancia de OkHttpClient
         val client = OkHttpClient()
 
-        // Crear una solicitud HTTP GET a la URL del servicio web
         val request = Request.Builder()
             .url("https://dev.appsjamar.com/credito/payoro/obtener_texto_tyc/JA")
             .get()
@@ -99,16 +112,14 @@ class DialogTermsAndConditions: DialogFragment() {
 
         client.newCall(request).enqueue(object : Callback {
             override fun onResponse(call: Call, response: okhttp3.Response) {
-                // Verificar que la respuesta sea exitosa (código de estado 200)
+
                 if (response.code == 200) {
-                    // Obtener la respuesta en forma de cadena de texto
+
                     val jsonResponse = response.body?.string()
 
-                    // Parsear la respuesta a un objeto de la clase de modelo utilizando Gson
                     val gson = Gson()
                     val responseObject = gson.fromJson(jsonResponse, Response::class.java)
 
-                    // Obtener el valor de la clave "description" del objeto responseObject
                     val description = responseObject.data.description
 
                     // Actualizar el TextView en el hilo principal de la interfaz de usuario
@@ -129,23 +140,27 @@ class DialogTermsAndConditions: DialogFragment() {
         return rootView
     }
 
-    fun guardarRespuestaTermsNConditions(respuesta: String) {
+    fun guardarRespuestaTermsNConditions(cedula: String, respuesta: String, first_time: String) {
 
-        fun createJsonBody(): JSONObject {
-            val jsonBody = JSONObject()
-            jsonBody.put("n_ide", "1234500")
-            jsonBody.put("c_emp", "JA")
-            jsonBody.put("ip", "127.0.0.2")
-            jsonBody.put("mac", "122325")
-            jsonBody.put("imei", "33445335")
-            jsonBody.put("brand", "Samsung")
-            jsonBody.put("model_brand", "Galaxy S9")
-            jsonBody.put("android_version", "12")
-            jsonBody.put("first_time", "S")
-            jsonBody.put("answer", respuesta)
-            jsonBody.put("status", "A")
-            jsonBody.put("created_at", "2023/04/17")
-            jsonBody.put("updated_at", "")
+        fun createJsonBody(): JsonObject {
+
+            val gson = GsonBuilder().setDateFormat("yyyy/MM/dd").create()
+            val jsonBody = JsonObject()
+            jsonBody.addProperty("n_ide", cedula)
+            jsonBody.addProperty("c_emp", "JA")
+            jsonBody.addProperty("ip", getIPAddress())
+            jsonBody.addProperty("mac", "mac")
+            jsonBody.addProperty("uuid", getUUID())
+            jsonBody.addProperty("brand", getDeviceBrand())
+            jsonBody.addProperty("model_brand", getDeviceModel())
+            jsonBody.addProperty("android_version", getAndroidVersion())
+            jsonBody.addProperty("first_time", first_time)
+            jsonBody.addProperty("answer", respuesta)
+            jsonBody.addProperty("status", "A")
+            jsonBody.addProperty("created_at", getCurrentDate())
+            jsonBody.addProperty("updated_at", "")
+
+            println("JSON: " + jsonBody)
 
             return jsonBody
         }
@@ -162,12 +177,11 @@ class DialogTermsAndConditions: DialogFragment() {
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                // Manejar el error de la petición
                 e.printStackTrace()
             }
 
             override fun onResponse(call: Call, response: okhttp3.Response) {
-                // Manejar la respuesta de la petición
+
                 val jsonResponse = response.body?.string()
                 val gson = Gson()
                 val responseObject = gson.fromJson(jsonResponse, Response::class.java)
@@ -175,7 +189,6 @@ class DialogTermsAndConditions: DialogFragment() {
                 if (responseObject.success) {
                     println("Respuesta del servidor: Ok")
                 } else {
-                    // Manejar el caso de una respuesta no exitosa
                     println("Respuesta no exitosa del servidor: ${response.code} ${response.message}")
                 }
             }
@@ -224,15 +237,37 @@ class DialogTermsAndConditions: DialogFragment() {
         return null
     }
 
-    fun getDeviceBrandAndModel(): String {
+    private fun getUUID(): String {
+        val uuid: String = Settings.Secure.getString(requireContext().contentResolver, Settings.Secure.ANDROID_ID)
+        return uuid
+    }
+
+    fun getDeviceBrand(): String {
         val brand = Build.BRAND
+        return "$brand"
+    }
+
+    fun getDeviceModel(): String {
         val model = Build.MODEL
-        return "$brand $model"
+        return "$model"
     }
 
     fun getAndroidVersion(): String {
         return Build.VERSION.RELEASE
     }
 
+    fun getCurrentDate(): String {
+        val sdf = SimpleDateFormat("yyyy/MM/dd", Locale("es", "ES"))
+        sdf.timeZone = TimeZone.getTimeZone("UTC-5")
+        val currentdate = sdf.format(Date())
+        Log.d("fechaactual", currentdate)
+
+        return currentdate
+    }
+}
+
+private fun MainActivity.getEditTextValue(): String {
+    val editText = findViewById<EditText>(R.id.editTextTextPersonName)
+    return editText.text.toString()
 }
 

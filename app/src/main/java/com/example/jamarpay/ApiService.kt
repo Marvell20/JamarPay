@@ -18,4 +18,7 @@ interface ApiService {
     //@POST("/credito/payoro/guardar_respuesta_tyc/{company}")
     //fun postSaveAnswerTermAndCondition(@Body request: TermAndConditionRequest, @Path("company") c_emp: String): Call<TermAndConditionAnswerResponse>
 
+    @GET("/credito/payoro/v1/{company}/cliente-oro/{nit}/segmento")
+    suspend fun getGoldClientValidation(@Path("company") company: String, @Path("nit") nit: String): Response<ValidationGoldClientResponse>
+
 }

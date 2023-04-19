@@ -1,5 +1,6 @@
 package com.example.jamarpay
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import common.DialogTermsAndConditions
 import common.DialogTermsAndConditions.DialogFragmentListener
+import common.Identity
+import common.LoadingView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,6 +25,8 @@ class MainActivity : AppCompatActivity(), DialogFragmentListener {
     private lateinit var checkBox: CheckBox
     private lateinit var btnNext: Button
     private lateinit var checkBoxText: TextView
+
+    private val validateGoldClientScope = CoroutineScope(Dispatchers.IO)
 
     override fun onAcceptClicked() {
         checkBox.isChecked = true
@@ -54,7 +59,38 @@ class MainActivity : AppCompatActivity(), DialogFragmentListener {
             btnNext.setOnClickListener {
 
                 if (checkBox.isChecked) {
-                    setContentView(R.layout.loading_view)
+                    val mainActivity = MainActivity()
+                    val fragment = LoadingView()
+                    val identidadConfirmada = Identity()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.LoginLayout, fragment)
+                        .commit()
+
+                    validateGoldClientScope.launch {
+                        val retrofit = Retrofit.Builder()
+                            .baseUrl("https://dev.appsjamar.com")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build()
+
+                        val gettingGoldClient = retrofit.create(ApiService::class.java)
+                        val goldClient = gettingGoldClient.getGoldClientValidation("JA", findViewById<EditText>(R.id.editTextTextPersonName).text.toString())
+                        Log.i("GoldClientValidation",goldClient.body().toString())
+
+                        if (goldClient.body()?.data?.segmento == "ORO" || goldClient.body()?.data?.segmento == "PORO") {
+
+                            supportFragmentManager.beginTransaction()
+                                .remove(fragment)
+                                .commit()
+
+                            supportFragmentManager.beginTransaction()
+                                .replace(R.id.LoginLayout, identidadConfirmada)
+                                .commit()
+
+                        } else {
+                            println("Cliente no es oro")
+                        }
+                    }
+
                 } else {
                     Toast.makeText(this, "Por favor, acepta los términos y condiciones.", Toast.LENGTH_SHORT).show()
                 }
@@ -66,7 +102,6 @@ class MainActivity : AppCompatActivity(), DialogFragmentListener {
             }
 
             //BREINER
-
 
             secondScope.launch {
 
@@ -111,10 +146,12 @@ class MainActivity : AppCompatActivity(), DialogFragmentListener {
                         // No se usa
                     }
                 })
+
+                fun getEditTextValue(): String {
+                    return editText.text.toString()
+                }
             }
 
-        }, 3000) // tiempo de retraso en milisegundos (5 segundos)
-
-        //setContentView(R.layout.login)
+        }, 5000) // tiempo de retraso en milisegundos (5 segundos)
     }
 }

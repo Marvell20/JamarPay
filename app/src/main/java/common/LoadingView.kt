@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.jamarpay.R
-import com.google.android.material.progressindicator.CircularProgressIndicator
 
-class CircularProgressIndicator: Fragment() {
-    lateinit var progressIndicator: CircularProgressIndicator
-
+class LoadingView: Fragment() {
+    //lateinit var progressIndicator: CircularProgressIndicator
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -18,8 +16,10 @@ class CircularProgressIndicator: Fragment() {
     ): View? {
         val rootView: View = inflater.inflate(R.layout.loading_view, container, false)
 
-        progressIndicator = rootView.findViewById(R.id.circularProgressIndicator)
+        //progressIndicator = rootView.findViewById(R.id.circularProgressIndicator)
 
         return rootView
     }
+
+
 }
