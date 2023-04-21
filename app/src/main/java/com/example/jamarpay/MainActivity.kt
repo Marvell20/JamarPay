@@ -1,6 +1,7 @@
 package com.example.jamarpay
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -140,6 +141,8 @@ class MainActivity : AppCompatActivity(), DialogFragmentListener {
 
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                         button.isEnabled = !s.isNullOrEmpty()
+                        button.setBackgroundColor(Color.BLACK)
+                        button.setTextColor(Color.WHITE)
                     }
 
                     override fun afterTextChanged(s: Editable?) {
