@@ -3,7 +3,7 @@
     <string name="txt_bienvenida">¡Te damos la bienvenida!</string>
     <string name="txt_apporo">A la App ORO de Jamar, donde podrás realizar tu autogestión.</string>
     <string name="txt_ingresadoc">Primero, ingresa tu número de documento y daremos el siguiente paso a verificar tu identidad.</string>
-    <string name="txt_chbox">Aceptar términos y condiciones</string>
+    <string name="txt_chbox"><u>Aceptar términos y condiciones</u></string>
     <string name="txt_button">Verifica mi identidad</string>
     <string name="txt_aceptar">Aceptar</string>
     <string name="txt_rechazar">Rechazar</string>

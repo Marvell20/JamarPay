@@ -125,7 +125,7 @@ class DialogTermsAndConditions: DialogFragment() {
                     // Actualizar el TextView en el hilo principal de la interfaz de usuario
                     handler.post {
                         // Actualizar el TextView en el hilo principal de la interfaz de usuario
-                        textView.text = description
+                        //textView.text = description
                     }
                 } else {
                     System.out.println("No hubo respuesta de la petición")

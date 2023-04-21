@@ -10,6 +10,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import common.ClienteNoEsOro
 import common.DialogTermsAndConditions
@@ -136,6 +137,10 @@ class MainActivity : AppCompatActivity(), DialogFragmentListener {
                 val editText = findViewById<EditText>(R.id.editTextTextPersonName)
                 val button = findViewById<MaterialButton>(R.id.button)
                 button.isEnabled = false
+                val color = ContextCompat.getColor(this@MainActivity, R.color.gray_btn)
+                val colorText = ContextCompat.getColor(this@MainActivity, R.color.prompt_button_text)
+                button.setBackgroundColor(color)
+                button.setTextColor(colorText)
 
                 editText.addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(
@@ -149,7 +154,8 @@ class MainActivity : AppCompatActivity(), DialogFragmentListener {
 
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                         button.isEnabled = !s.isNullOrEmpty()
-                        button.setBackgroundColor(Color.BLACK)
+                        val color = ContextCompat.getColor(this@MainActivity, R.color.black)
+                        button.setBackgroundColor(color)
                         button.setTextColor(Color.WHITE)
                     }
 
@@ -163,6 +169,6 @@ class MainActivity : AppCompatActivity(), DialogFragmentListener {
                 }
             }
 
-        }, 5000) // tiempo de retraso en milisegundos (5 segundos)
+        }, 3000) // tiempo de retraso en milisegundos (5 segundos)
     }
 }
