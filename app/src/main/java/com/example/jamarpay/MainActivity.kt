@@ -11,6 +11,7 @@ import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
+import common.ClienteNoEsOro
 import common.DialogTermsAndConditions
 import common.DialogTermsAndConditions.DialogFragmentListener
 import common.Identity
@@ -60,9 +61,10 @@ class MainActivity : AppCompatActivity(), DialogFragmentListener {
             btnNext.setOnClickListener {
 
                 if (checkBox.isChecked) {
-                    val mainActivity = MainActivity()
                     val fragment = LoadingView()
                     val identidadConfirmada = Identity()
+                    val clienteNoOro = ClienteNoEsOro()
+
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.LoginLayout, fragment)
                         .commit()
@@ -88,7 +90,13 @@ class MainActivity : AppCompatActivity(), DialogFragmentListener {
                                 .commit()
 
                         } else {
-                            println("Cliente no es oro")
+                            supportFragmentManager.beginTransaction()
+                                .remove(fragment)
+                                .commit()
+
+                            supportFragmentManager.beginTransaction()
+                                .replace(R.id.LoginLayout, clienteNoOro)
+                                .commit()
                         }
                     }
 
