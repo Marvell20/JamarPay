@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:text="Hemos confirmado que se trata de ti.\n
-Hasta aqui llega nuestra primera versión,\n gracias por confiar en nosotros."
+!Espera por más!"
             android:textColor="@color/down_arrow"
             android:layout_marginTop="12dp"
             android:textSize="18sp"
