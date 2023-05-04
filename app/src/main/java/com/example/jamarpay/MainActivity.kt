@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -28,6 +30,8 @@ class MainActivity : AppCompatActivity(), DialogFragmentListener {
     private lateinit var checkBox: CheckBox
     private lateinit var btnNext: Button
     private lateinit var checkBoxText: TextView
+    private lateinit var spinner: Spinner
+    private var isNumeric = false
 
     private val validateGoldClientScope = CoroutineScope(Dispatchers.IO)
 
@@ -142,21 +146,40 @@ class MainActivity : AppCompatActivity(), DialogFragmentListener {
                 button.setBackgroundColor(color)
                 button.setTextColor(colorText)
 
+                val spinner = findViewById<Spinner>(R.id.my_spinner)
+
+                spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                        val selectedLabel = labels[position]
+
+                        if (selectedLabel == "CEDULA DE CIUDADANIA") {
+                            editText.inputType = InputType.TYPE_CLASS_NUMBER
+                        } else {
+                            editText.inputType = InputType.TYPE_CLASS_TEXT
+                        }
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                        // No se usa
+                    }
+                }
+
                 editText.addTextChangedListener(object : TextWatcher {
-                    override fun beforeTextChanged(
-                        s: CharSequence?,
-                        start: Int,
-                        count: Int,
-                        after: Int
-                    ) {
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                         // No se usa
                     }
 
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                        button.isEnabled = !s.isNullOrEmpty()
-                        val color = ContextCompat.getColor(this@MainActivity, R.color.black)
-                        button.setBackgroundColor(color)
-                        button.setTextColor(Color.WHITE)
+                        if (!s.isNullOrEmpty() && s.length >= 4) {
+                            button.isEnabled = true
+                            button.setBackgroundColor(Color.BLACK)
+                            button.setTextColor(Color.WHITE)
+                        } else {
+                            button.isEnabled = false
+                            //button.setBackgroundColor(color)
+                            //button.setTextColor(colorText)
+                        }
+
                     }
 
                     override fun afterTextChanged(s: Editable?) {
