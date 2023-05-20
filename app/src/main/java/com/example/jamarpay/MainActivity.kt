@@ -85,7 +85,14 @@
                                 val segmento = response?.data?.segmento
 
                                 if (segmento == "ORO" || segmento == "PORO") {
-                                    val intent = Intent(this@MainActivity, ConfirmedIdentity::class.java)
+
+                                    //Validar si necesita v.i o si necesita aprovisamiento o si necesita los 2
+                                    //V.I o aprovisionamiento
+
+                                    //V.I (segunda validacion para mostrar aprovisionamiento o no)
+                                    //Aprovisonamiento
+
+                                    val intent = Intent(this@MainActivity, ValidateIdentityHome::class.java)
                                     startActivity(intent)
                                     finish()
                                 } else {
