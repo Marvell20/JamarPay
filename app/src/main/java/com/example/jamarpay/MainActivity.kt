@@ -21,7 +21,7 @@
     import kotlinx.coroutines.launch
     import retrofit2.Retrofit
     import retrofit2.converter.gson.GsonConverterFactory
-
+    import common.GlobalData
     class MainActivity : AppCompatActivity(), DialogFragmentListener {
 
         private lateinit var checkBox: CheckBox
@@ -42,10 +42,13 @@
             };
         }
 
+
+
         private val secondScope = CoroutineScope(Dispatchers.IO)
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
+            setContentView(R.layout.identidad_confirmada)
 
             val handler = Handler(Looper.getMainLooper())
 
@@ -65,10 +68,14 @@
 
                 btnNext.setOnClickListener {
 
+                    val editText = findViewById<EditText>(R.id.editTextTextPersonName)
+                    GlobalData.Identificacion = editText.text.toString()
+
                     if (checkBox.isChecked) {
                         val intent = Intent(this@MainActivity, LoadingView::class.java)
                         startActivity(intent)
                         finish()
+
 
                         validateGoldClientScope.launch {
                             val retrofit = Retrofit.Builder()

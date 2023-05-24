@@ -1,16 +1,22 @@
 package common
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.example.jamarpay.R
 
 class ConfirmedIdentity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.identidad_confirmada)
+
+        val btnAprov = findViewById<Button>(R.id.RegistrarAprov)
+
+        btnAprov.setOnClickListener {
+            val valueFromMain = "Valor desde la clase principal"
+            val dialogFragment = Provisioning.newInstance(valueFromMain)
+            dialogFragment.show(supportFragmentManager, "Aprovisionamiento")
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.jamarpay
 
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -21,4 +22,6 @@ interface ApiService {
     @GET("/credito/payoro/v1/{company}/cliente-oro/{nit}/segmento")
     suspend fun getGoldClientValidation(@Path("company") company: String, @Path("nit") nit: String): Response<ValidationGoldClientResponse>
 
+    @POST("/credito/payoro/aprovisionamiento/{company}")
+    suspend fun sendAprovisionamiento(@Path("company") company: String, @Body requestBody: RequestBody): Response<ProvisioningResponse>
 }
