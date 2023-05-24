@@ -30,6 +30,8 @@
         <activity android:name="common.LoadingView" />
         <activity android:name="common.ConfirmedIdentity" />
         <activity android:name="common.UnconfirmedIdentity" />
+        <activity android:name="common.DeviceProvisioning" />
+        <activity android:name="common.DeviceNotProvisioning" />
 
         <meta-data
             android:name="preloaded_fonts"

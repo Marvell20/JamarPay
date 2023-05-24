@@ -47,10 +47,22 @@ class Provisioning: DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val cancelButton = view.findViewById<MaterialButton>(R.id.TermsAndConditionsCancelButton)
+        val AcceptButton = view.findViewById<MaterialButton>(R.id.TermsAndConditionsAcceptButton)
 
         // Configura el listener para el evento de clic del botón
         cancelButton.setOnClickListener {
             dismiss()
+            val context = requireContext()
+            val intent = Intent(requireContext() , DeviceNotProvisioning::class.java)
+            context.startActivity(intent)
+
+        }
+        AcceptButton.setOnClickListener {
+            dismiss()
+            val context = requireContext()
+            val intent = Intent(requireContext() , DeviceProvisioning::class.java)
+            context.startActivity(intent)
+
         }
 
         // Obtén el valor pasado desde la clase principal
