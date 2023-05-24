@@ -23,6 +23,5 @@ interface ApiService {
     suspend fun getGoldClientValidation(@Path("company") company: String, @Path("nit") nit: String): Response<ValidationGoldClientResponse>
 
     @POST("/credito/payoro/aprovisionamiento/{company}")
-    suspend fun sendAprovisionamientoRequest(@Path("company") company: String, @Body requestBody: RequestBody): Response<ProvisioningResponse>
-
+    suspend fun sendAprovisionamiento(@Path("company") company: String, @Body requestBody: RequestBody): Response<ProvisioningResponse>
 }
