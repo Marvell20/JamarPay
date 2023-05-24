@@ -50,14 +50,6 @@
             super.onCreate(savedInstanceState)
             setContentView(R.layout.identidad_confirmada)
 
-            val btnAprov = findViewById<Button>(R.id.RegistrarAprov)
-
-            btnAprov.setOnClickListener {
-                val intent = Intent(this@MainActivity, Aprovisionning::class.java)
-                startActivity(intent)
-                finish()
-            }
-
             val handler = Handler(Looper.getMainLooper())
 
             setContentView(R.layout.splash)
