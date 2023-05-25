@@ -32,6 +32,7 @@
         <activity android:name="common.UnconfirmedIdentity" />
         <activity android:name="common.DeviceProvisioning" />
         <activity android:name="common.DeviceNotProvisioning" />
+        <activity android:name="common.DeviceAlreadyProvisioned" />
 
         <meta-data
             android:name="preloaded_fonts"

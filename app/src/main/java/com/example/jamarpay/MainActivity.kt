@@ -31,6 +31,7 @@
         private var isNumeric = false
 
         private val validateGoldClientScope = CoroutineScope(Dispatchers.IO)
+        private val secondScope = CoroutineScope(Dispatchers.IO)
 
         override fun onAcceptClicked() {
             checkBox.isChecked = true
@@ -41,10 +42,6 @@
                 checkBox.isChecked = false
             };
         }
-
-
-
-        private val secondScope = CoroutineScope(Dispatchers.IO)
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -92,9 +89,23 @@
                                 val segmento = response?.data?.segmento
 
                                 if (segmento == "ORO" || segmento == "PORO") {
-                                    val intent = Intent(this@MainActivity, ConfirmedIdentity::class.java)
-                                    startActivity(intent)
-                                    finish()
+
+                                    val getNextProcess = retrofit.create(ApiService::class.java)
+                                    val nextProcess = getNextProcess.getNextProcess(GlobalData.Identificacion,"JA")
+                                    Log.i("NextProcess",nextProcess.body().toString())
+
+                                    if (nextProcess.isSuccessful){
+                                        val provisioning = nextProcess.body()?.provisionamiento
+                                        if (provisioning == true){
+                                            val intent = Intent(this@MainActivity, ConfirmedIdentity::class.java)
+                                            startActivity(intent)
+                                            finish()
+                                        } else {
+                                            val intent = Intent(this@MainActivity, DeviceAlreadyProvisioned::class.java)
+                                            startActivity(intent)
+                                            finish()
+                                        }
+                                    }
                                 } else {
                                     val intent = Intent(this@MainActivity, UnconfirmedIdentity::class.java)
                                     startActivity(intent)

@@ -1,7 +1,6 @@
 package com.example.jamarpay
 
 import okhttp3.RequestBody
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -24,4 +23,7 @@ interface ApiService {
 
     @POST("/credito/payoro/aprovisionamiento/{company}")
     suspend fun sendAprovisionamiento(@Path("company") company: String, @Body requestBody: RequestBody): Response<ProvisioningResponse>
+
+    @GET("credito/payoro/validate_workflow_jamarpay/{nit}/{company}")
+    suspend fun getNextProcess(@Path("nit") nit: String, @Path("company") company: String): Response<NextProcessItem>
 }
