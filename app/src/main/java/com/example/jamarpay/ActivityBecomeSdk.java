@@ -29,7 +29,7 @@ public class ActivityBecomeSdk extends AppCompatActivity {
         String clientSecret =  "AK5OZ59W2EV61GSM0FQXNBRU4DTJH3PI" ;
         String clientId = "jamarprod";
         String contractId = "72";
-        String userId = "64564240";
+        String userId = "1002233456";
 
         BecomeResponseManager.getInstance().startAutentication(ActivityBecomeSdk.this,
                 new BDIVConfig(clientId,
@@ -46,17 +46,15 @@ public class ActivityBecomeSdk extends AppCompatActivity {
 
             @Override
             public void onSuccess(ResponseIV responseIV) {
-                Log.i("Become","Login Exitoso");
-                /*Intent intent = new Intent(ActivityBecomeSdk.this, common.ConfirmedIdentity.class);
+                Intent intent = new Intent(ActivityBecomeSdk.this, common.ConfirmedIdentity.class);
                 intent.putExtra("responseIV", (Parcelable) responseIV);
                 intent.putExtra("idUser",  userId);
                 startActivity(intent);
-                finish();*/
             }
 
             @Override
             public void onCancel() {
-                Log.d("cancel", "cancel by user");
+                Log.i("cancel", "cancel by user");
             }
 
             @Override
