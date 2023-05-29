@@ -18,7 +18,7 @@
             android:name=".ActivityBecomeSdk"
             android:exported="false" />-->
         <activity
-            android:name=".ActivityBecomeSdk"
+            android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -27,6 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ActivityBecomeSdk" />
         <activity android:name="common.CustomerVerification" />
         <activity android:name="common.LoadingView" />
         <activity android:name="common.ConfirmedIdentity" />
