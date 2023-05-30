@@ -48,33 +48,29 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             app:srcCompat="@drawable/mobile_phone_flatline_1" />
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_marginHorizontal="16dp"
+            android:text="¡Bienvenido!"
+            android:textColor="@color/down_arrow"
+            android:layout_marginTop="12dp"
+            android:textSize="34sp"
+            app:fontFamily="@font/lato" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:layout_marginHorizontal="16dp"
-            android:text="Este dispositivo ya fue aprovisionado,\n espere por más en futuras versiones"
+            android:text="Por favor espere por más, estamos trabajando \n para darte nuevas experiencias \n en nuestra app."
             android:textColor="@color/down_arrow"
             android:layout_marginTop="12dp"
             android:textSize="18sp"
             app:fontFamily="@font/lato" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/TermsAndConditionsAcceptButton"
-            android:layout_width="328dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:backgroundTint="@color/black"
-            android:text="Registrar dispositivo"
-            android:paddingVertical="10dp"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:cornerRadius="24sp"
-            app:fontFamily="@font/lato"
-            android:visibility="gone"/>
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -89,23 +89,10 @@
                                 val segmento = response?.data?.segmento
 
                                 if (segmento == "ORO" || segmento == "PORO") {
+                                    val intent = Intent(this@MainActivity, ValidateIdentityHome::class.java)
+                                    startActivity(intent)
+                                    finish()
 
-                                    val getNextProcess = retrofit.create(ApiService::class.java)
-                                    val nextProcess = getNextProcess.getNextProcess(GlobalData.Identificacion,"JA")
-                                    Log.i("NextProcess",nextProcess.body().toString())
-
-                                    if (nextProcess.isSuccessful){
-                                        val provisioning = nextProcess.body()?.provisionamiento
-                                        if (provisioning == true){
-                                            val intent = Intent(this@MainActivity, ConfirmedIdentity::class.java)
-                                            startActivity(intent)
-                                            finish()
-                                        } else {
-                                            val intent = Intent(this@MainActivity, DeviceAlreadyProvisioned::class.java)
-                                            startActivity(intent)
-                                            finish()
-                                        }
-                                    }
                                 } else {
                                     val intent = Intent(this@MainActivity, UnconfirmedIdentity::class.java)
                                     startActivity(intent)
