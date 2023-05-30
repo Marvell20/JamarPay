@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/IdentidadConfirmadaLayout"
+    android:id="@+id/IntentosAgotadosLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
+
 
     <LinearLayout
         android:background="@color/white"
@@ -47,13 +47,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            app:srcCompat="@drawable/mobile_phone_flatline_1" />
+            app:srcCompat="@drawable/pig" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="328dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="¡Identidad \n confirmada!"
+            android:text="Has excedido el límite de intentos"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="40sp"
@@ -63,21 +63,20 @@
             android:layout_width="328dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="Hemos confirmado que se trata de ti.\n
-!Espera por más!"
+            android:text="Por favor, comuníquese con un asesor o acérquese a un punto de financiación."
             android:textColor="@color/down_arrow"
             android:layout_marginTop="12dp"
             android:textSize="18sp"
             app:fontFamily="@font/lato" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/RegistrarAprov"
+            android:id="@+id/LoginReverse"
             android:layout_width="328dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
             android:paddingHorizontal="24dp"
             android:paddingVertical="12dp"
-            android:text="Registrar dispositivo"
+            android:text="Volver al inicio"
             android:layout_marginTop="22dp"
             android:textAllCaps="false"
             android:textColor="@color/white"
@@ -103,4 +102,5 @@
             android:visibility="gone"/>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
