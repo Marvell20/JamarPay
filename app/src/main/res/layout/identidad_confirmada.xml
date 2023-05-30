@@ -50,7 +50,7 @@
             app:srcCompat="@drawable/mobile_phone_flatline_1" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
+            android:layout_width="328dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:text="¡Identidad \n confirmada!"
@@ -60,7 +60,7 @@
             app:fontFamily="@font/lato" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
+            android:layout_width="328dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:text="Hemos confirmado que se trata de ti.\n
@@ -72,7 +72,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/RegistrarAprov"
-            android:layout_width="290dp"
+            android:layout_width="328dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
             android:paddingHorizontal="24dp"
