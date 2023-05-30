@@ -26,4 +26,7 @@ interface ApiService {
 
     @GET("credito/payoro/validate_workflow_jamarpay/{nit}/{company}")
     suspend fun getNextProcess(@Path("nit") nit: String, @Path("company") company: String): Response<NextProcessItem>
+
+    @POST("/credito/payoro/insert-validate_identity/{company}")
+    suspend fun sendValidateIdentity(@Path("company") company: String, @Body requestBody: ResponseAddBecome): Response<ResponseAddBecome>
 }
