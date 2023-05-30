@@ -89,38 +89,10 @@
                                 val segmento = response?.data?.segmento
 
                                 if (segmento == "ORO" || segmento == "PORO") {
+                                    val intent = Intent(this@MainActivity, ValidateIdentityHome::class.java)
+                                    startActivity(intent)
+                                    finish()
 
-                                    val getNextProcess = retrofit.create(ApiService::class.java)
-                                    val nextProcess = getNextProcess.getNextProcess(GlobalData.Identificacion,"JA")
-                                    Log.i("NextProcess",nextProcess.body().toString())
-
-                                    if (nextProcess.isSuccessful){
-                                        val provisioning = nextProcess.body()?.provisionamiento
-                                        val validenti = nextProcess.body()?.validation_identity
-                                        val intentos = nextProcess.body()?.attempts_vi
-
-                                        if(validenti == true && intentos == true){
-                                            val intent = Intent(this@MainActivity, ActivityBecomeSdk::class.java)
-                                            startActivity(intent)
-                                            finish()
-                                        } else if(validenti == true && intentos == true) {
-                                            //TO-DO poner pantalla de josue
-                                            Log.i("Become","Mostrar pantalla de josue")
-
-                                        } else if(validenti == true && intentos == false) {
-                                            //TO-DO poner pantalla de breiner
-                                            Log.i("Become","Mostrar pantalla de josue")
-                                        }
-                                        else if (provisioning == true){
-                                            val intent = Intent(this@MainActivity, ConfirmedIdentity::class.java)
-                                            startActivity(intent)
-                                            finish()
-                                        } else {
-                                            val intent = Intent(this@MainActivity, DeviceAlreadyProvisioned::class.java)
-                                            startActivity(intent)
-                                            finish()
-                                        }
-                                    }
                                 } else {
                                     val intent = Intent(this@MainActivity, UnconfirmedIdentity::class.java)
                                     startActivity(intent)
