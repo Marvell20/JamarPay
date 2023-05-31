@@ -1,6 +1,7 @@
 package com.example.jamarpay
 
 import okhttp3.RequestBody
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -28,5 +29,6 @@ interface ApiService {
     suspend fun getNextProcess(@Path("nit") nit: String, @Path("company") company: String): Response<NextProcessItem>
 
     @POST("/credito/payoro/insert-validate_identity/{company}")
-    suspend fun sendValidateIdentity(@Path("company") company: String, @Body requestBody: ResponseAddBecome): Response<ResponseAddBecome>
+    suspend fun sendValidateIdentity(@Path("company") company: String, @Body requestAddBecome: RequestAddBecome): Response<ResponseAddBecome>
+
 }

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 
 import com.becomedigital.sdk.identity.becomedigitalsdk.callback.BecomeCallBackManager;
@@ -14,6 +13,14 @@ import com.becomedigital.sdk.identity.becomedigitalsdk.callback.BecomeResponseMa
 import com.becomedigital.sdk.identity.becomedigitalsdk.callback.LoginError;
 import com.becomedigital.sdk.identity.becomedigitalsdk.models.BDIVConfig;
 import com.becomedigital.sdk.identity.becomedigitalsdk.models.ResponseIV;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ActivityBecomeSdk extends AppCompatActivity {
 
@@ -29,7 +36,11 @@ public class ActivityBecomeSdk extends AppCompatActivity {
         String clientSecret =  "AK5OZ59W2EV61GSM0FQXNBRU4DTJH3PI" ;
         String clientId = "jamarprod";
         String contractId = "72";
-        String userId = "1002233458";
+
+        Intent intent = getIntent();
+        String userId = intent.getStringExtra("userid");
+
+        Log.i("userid2", intent.getStringExtra("userid"));
 
         BecomeResponseManager.getInstance().startAutentication(ActivityBecomeSdk.this,
                 new BDIVConfig(clientId,
@@ -46,11 +57,38 @@ public class ActivityBecomeSdk extends AppCompatActivity {
 
             @Override
             public void onSuccess(ResponseIV responseIV) {
-                Log.i("BecomeResponse",responseIV.toString());
-                Intent intent = new Intent(ActivityBecomeSdk.this, common.ConfirmedIdentity.class);
-                intent.putExtra("responseIV", (Parcelable) responseIV);
-                intent.putExtra("idUser",  userId);
-                startActivity(intent);
+
+                //validating identity
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://dev.appsjamar.com")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                ApiServiceJava apiService = retrofit.create(ApiServiceJava.class);
+
+                Call<ResponseValidateIdentityJava> call = apiService.resultValidateIdentity("JA",userId);
+
+                call.enqueue(new Callback<ResponseValidateIdentityJava>() {
+                    @Override
+                    public void onResponse(Call<ResponseValidateIdentityJava> call, Response<ResponseValidateIdentityJava> response) {
+                        if(response.isSuccessful() && response.body().isSuccess()){
+                            ResponseValidateIdentityJava responseValidateIdentityJava = response.body();
+                            Intent intent = new Intent(ActivityBecomeSdk.this, common.ConfirmedIdentity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Log.i("respuesta","algo falló");
+                            Log.i("respuesta2",response.toString());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseValidateIdentityJava> call, Throwable t) {
+                        Log.i("respuesta","algo falló, entró a onFailure");
+                    }
+
+                });
+
             }
 
             @Override

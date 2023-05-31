@@ -3,8 +3,10 @@ package common
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.widget.Button
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.jamarpay.ActivityBecomeSdk
 import com.example.jamarpay.ApiService
 import com.example.jamarpay.R
@@ -14,7 +16,7 @@ import com.google.gson.JsonObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.Call
+import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -24,11 +26,16 @@ import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
+import android.provider.Settings.Secure
+import com.example.jamarpay.RequestAddBecome
+import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.runBlocking
+import retrofit2.Call
 
 class ValidateIdentityHome : AppCompatActivity() {
 
     private val validateIdentity = CoroutineScope(Dispatchers.IO)
-
+    private val validateBecomeScope = CoroutineScope(Dispatchers.IO)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.validate_identity_home)
@@ -52,9 +59,15 @@ class ValidateIdentityHome : AppCompatActivity() {
                     val intentos = nextProcess.body()?.attempts_vi
 
                     if (validenti == true && intentos == true) {
-                        val intent = Intent(this@ValidateIdentityHome, ActivityBecomeSdk::class.java)
-                        startActivity(intent)
-                        finish()
+
+                        saveValidateIdentity(
+                            n_ide = GlobalData.Identificacion,
+                            c_emp = "JA",
+                            uuid = getUUID(),
+                            status = "G",
+                            result_status = ""
+                        )
+
                     } else if (validenti == true && intentos == true) {
                         //TO-DO poner pantalla de josue
                         Log.i("Become", "Mostrar pantalla de josue")
@@ -67,8 +80,7 @@ class ValidateIdentityHome : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else {
-                        val intent =
-                            Intent(this@ValidateIdentityHome, DeviceAlreadyProvisioned::class.java)
+                        val intent = Intent(this@ValidateIdentityHome, DeviceAlreadyProvisioned::class.java)
                         startActivity(intent)
                         finish()
                     }
@@ -78,48 +90,52 @@ class ValidateIdentityHome : AppCompatActivity() {
     }
 
     fun saveValidateIdentity(n_ide: String,
-                             c_emp: String,
-                             uuid: String,
-                             status: String,
-                             result_status: String
+                                     c_emp: String,
+                                     uuid: String,
+                                     status: String,
+                                     result_status: String
     ) {
 
-        fun createJsonBody(): JsonObject {
-            val jsonBody = JsonObject();
-            jsonBody.addProperty("n_ide", n_ide)
-            jsonBody.addProperty("c_emp", c_emp)
-            jsonBody.addProperty("status", "G")
-            jsonBody.addProperty("result_status", "")
-            return jsonBody;
+        validateBecomeScope.launch {
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://dev.appsjamar.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val apiservice = retrofit.create(ApiService::class.java)
+
+            val become = RequestAddBecome(
+                n_ide,
+                c_emp,
+                getUUID(),
+                "",
+                "G",
+                ""
+            )
+
+            val callApiService = apiservice.sendValidateIdentity("JA",become)
+            GlobalData.UserId = callApiService.body()?.userid ?: 0
+
+            runBlocking {
+                validateBecomeScope.coroutineContext.cancelChildren()
+                GlobalData.UserId = callApiService.body()?.userid ?: 0
+                //Call activity of sdk become
+                Log.i("userid",GlobalData.UserId.toString())
+                val intent = Intent(this@ValidateIdentityHome, ActivityBecomeSdk::class.java)
+                intent.putExtra("userid", GlobalData.UserId.toString())
+                startActivity(intent)
+                finish()
+            }
         }
 
-        val client = OkHttpClient()
-        val url = "https://dev.appsjamar.com/credito/payoro/insert-validate_identity/JA" // Cambiar por la URL de tu API
-        val jsonBody = createJsonBody() // Crear el cuerpo de la solicitud en formato JSON
+    }
 
-        val requestBody = jsonBody.toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
-        val request = Request.Builder()
-            .url(url)
-            .post(requestBody)
-            .build()
+    fun getUUID(): String {
+        val androidId = Secure.getString(
+            applicationContext.contentResolver,
+            Secure.ANDROID_ID
+        )
 
-        client.newCall(request).enqueue(object: okhttp3.Callback{
-            override fun onFailure(call: Call, e: IOException) {
-                e.printStackTrace()
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                val jsonResponse = response.body?.string()
-                val gson = Gson()
-                val responseObject = gson.fromJson<ResponseAddBecome>(jsonResponse, Response::class.java)
-
-                if( responseObject.success) {
-                    Log.i("addBecome", "se creo el registro exitosamente")
-                } else {
-                    Log.i("addBecome", "no se creo el registro")
-                }
-            }
-        })
-
+        return androidId.toString()
     }
 }
