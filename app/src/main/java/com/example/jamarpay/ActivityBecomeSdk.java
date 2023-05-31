@@ -77,8 +77,9 @@ public class ActivityBecomeSdk extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         } else {
-                            Log.i("respuesta","algo falló");
-                            Log.i("respuesta2",response.toString());
+                            Intent intent = new Intent(ActivityBecomeSdk.this, common.Become_Unconfirmed.class);
+                            startActivity(intent);
+                            finish();
                         }
                     }
 

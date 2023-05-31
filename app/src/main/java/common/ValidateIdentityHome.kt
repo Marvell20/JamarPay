@@ -43,49 +43,15 @@ class ValidateIdentityHome : AppCompatActivity() {
         val button = findViewById<Button>(R.id.ValidateIdentity)
 
         button.setOnClickListener {
-            validateIdentity.launch {
-                val retrofit = Retrofit.Builder()
-                    .baseUrl("https://dev.appsjamar.com")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
 
-                val getNextProcess = retrofit.create(ApiService::class.java)
-                val nextProcess = getNextProcess.getNextProcess(GlobalData.Identificacion,"JA")
-                Log.i("NextProcess",nextProcess.body().toString())
+            saveValidateIdentity(
+                n_ide = GlobalData.Identificacion,
+                c_emp = "JA",
+                uuid = getUUID(),
+                status = "G",
+                result_status = ""
+            )
 
-                if (nextProcess.isSuccessful) {
-                    val provisioning = nextProcess.body()?.provisionamiento
-                    val validenti = nextProcess.body()?.validation_identity
-                    val intentos = nextProcess.body()?.attempts_vi
-
-                    if (validenti == true && intentos == true) {
-
-                        saveValidateIdentity(
-                            n_ide = GlobalData.Identificacion,
-                            c_emp = "JA",
-                            uuid = getUUID(),
-                            status = "G",
-                            result_status = ""
-                        )
-
-                    } else if (validenti == true && intentos == true) {
-                        //TO-DO poner pantalla de josue
-                        Log.i("Become", "Mostrar pantalla de josue")
-
-                    } else if (validenti == true && intentos == false) {
-                        //TO-DO poner pantalla de breiner
-                        Log.i("Become", "Mostrar pantalla de josue")
-                    } else if (provisioning == true) {
-                        val intent = Intent(this@ValidateIdentityHome, ConfirmedIdentity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        val intent = Intent(this@ValidateIdentityHome, DeviceAlreadyProvisioned::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-                }
-            }
         }
     }
 
