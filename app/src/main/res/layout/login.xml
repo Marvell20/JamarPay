@@ -8,7 +8,11 @@
     android:layout_gravity="bottom"
     android:background="@color/white"
     tools:context=".MainActivity">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:ignore="MissingConstraints">
     <RelativeLayout
         android:layout_width="match_parent" android:layout_height="match_parent">
         <LinearLayout
@@ -166,5 +170,5 @@
                 app:cornerRadius="24dp" />
         </LinearLayout>
     </RelativeLayout>
-
+</ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

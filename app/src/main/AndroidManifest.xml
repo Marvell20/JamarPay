@@ -34,7 +34,7 @@
         <activity android:name="common.DeviceAlreadyProvisioned" />
         <activity android:name="common.Become_Unconfirmed" />
         <activity android:name="common.ValidateIdentityHome" />
-
+        <activity android:name="common.FailedAttempts" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
