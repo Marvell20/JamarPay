@@ -7,65 +7,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardContainer"
+        android:id="@+id/cardContainerAprov"
         android:layout_width="match_parent"
-        android:layout_height="400sp"
+        android:layout_height="420sp"
         app:cardCornerRadius="12dp"
+        app:layout_constraintCircleRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/TermsAndConditionsIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            app:srcCompat="@drawable/icon_featured"
-            tools:layout_editor_absoluteX="130dp"
-            tools:layout_editor_absoluteY="131dp" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginBottom="24dp">
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/TermsAndConditionsIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/TermsAndConditionsHeaderTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/icon_featured" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/TermsAndConditionsHeaderTextView"
-                android:layout_width="300sp"
+                android:layout_width="296sp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/txt_title_aprovisionamiento"
                 android:textColor="@color/terms_and_conditions_header"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:layout_marginTop="10dp"
                 app:fontFamily="@font/lato"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TermsAndConditionsIcon" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/TermsAndConditionsBodyTextView"
-                android:layout_width="300sp"
+                android:layout_width="296sp"
                 android:layout_height="80dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:scrollbars="vertical"
                 android:text="@string/txt_inf_aprovisionamiento"
                 android:textColor="@color/down_arrow"
                 android:textSize="16sp"
                 app:fontFamily="@font/lato"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TermsAndConditionsHeaderTextView" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/TermsAndConditionsAcceptButton"
-                android:layout_width="290dp"
+                android:layout_width="296dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/darker_blue"
@@ -84,11 +86,12 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/TermsAndConditionsCancelButton"
-                android:layout_width="290dp"
+                android:layout_width="296dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/black"
                 android:paddingHorizontal="24dp"
                 android:paddingVertical="12dp"
+                android:layout_marginTop="10dp"
                 android:text="Cancelar"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

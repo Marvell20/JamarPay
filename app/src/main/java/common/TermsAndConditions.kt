@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.example.jamarpay.MainActivity
 import com.example.jamarpay.R
@@ -73,6 +74,9 @@ class TermsAndConditions: DialogFragment() {
         val cedula = mainActivity.getEditTextValue()
 
         var rootView: View = inflater.inflate(R.layout.dialog_terms_and_conditions, container, false)
+
+        val roundedBackground = ContextCompat.getDrawable(requireContext(), R.drawable.border_radious)
+        rootView.background = roundedBackground
 
         dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
