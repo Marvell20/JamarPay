@@ -9,8 +9,13 @@
     android:background="@color/white"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent" android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
         <LinearLayout
             android:id="@+id/LinearFont"
             android:layout_width="match_parent"
@@ -165,6 +170,8 @@
                 android:textSize="20sp"
                 app:cornerRadius="24dp" />
         </LinearLayout>
-    </RelativeLayout>
-
+    </ScrollView>
+</RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
