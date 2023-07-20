@@ -57,7 +57,7 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="40sp"
-            app:fontFamily="@font/lato" />
+            app:fontFamily="@font/geomanist_regular" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="328dp"
@@ -68,7 +68,7 @@
             android:textColor="@color/down_arrow"
             android:layout_marginTop="12dp"
             android:textSize="18sp"
-            app:fontFamily="@font/lato" />
+            app:fontFamily="@font/geomanist_regular" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/RegistrarAprov"
@@ -84,7 +84,8 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:cornerRadius="24sp"
-            app:fontFamily="@font/lato" />
+            app:fontFamily="@font/geomanist_regular
+" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/TermsAndConditionsAcceptButton"
@@ -99,7 +100,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:cornerRadius="24sp"
-            app:fontFamily="@font/lato"
+            app:fontFamily="@font/geomanist_regular"
             android:visibility="gone"/>
 
     </LinearLayout>
