@@ -58,7 +58,7 @@ de validación de identidad"
             android:textColor="@color/down_arrow"
             android:layout_marginTop="12dp"
             android:textSize="18sp"
-            app:fontFamily="@font/lato" />
+            app:fontFamily="@font/geomanist_regular" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/ValidateIdentity"
@@ -73,7 +73,7 @@ de validación de identidad"
             android:textSize="20sp"
             android:textStyle="bold"
             app:cornerRadius="24sp"
-            app:fontFamily="@font/lato" />
+            app:fontFamily="@font/geomanist_regular" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
