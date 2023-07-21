@@ -14,11 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JamarPay"
         tools:targetApi="31">
-        <!--<activity
-            android:name=".BottomNavigationViewJamarPay"
-            android:exported="false" /> -->
+
         <activity
-            android:name=".BottomNavigationViewJamarPay"
+            android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -38,6 +36,7 @@
         <activity android:name="common.Become_Unconfirmed" />
         <activity android:name="common.ValidateIdentityHome" />
         <activity android:name="common.FailedAttempts" />
+        <activity android:name=".BottomNavigationViewJamarPay" />
 
         <meta-data
             android:name="preloaded_fonts"

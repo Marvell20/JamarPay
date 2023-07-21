@@ -226,7 +226,7 @@
                         startActivity(intent)
                         finish()
                     } else {
-                        val intent = Intent(this@MainActivity, DeviceAlreadyProvisioned::class.java)
+                        val intent = Intent(this@MainActivity, BottomNavigationViewJamarPay::class.java)
                         startActivity(intent)
                         finish()
                     }
