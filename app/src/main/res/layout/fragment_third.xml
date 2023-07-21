@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f9fafb"
+        tools:context=".ThirdFragment"
+        android:orientation="vertical">
+
+
+
+
+
+        <!-- TODO: Update blank fragment layout -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#FFFFFF"
+            android:elevation="4dp"
+            android:theme="@style/Theme.AppCompat.Light" >
+
+            <ImageView
+                android:id="@+id/back_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="16dp"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/arrow_back"/>
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perfil"
+                android:layout_marginStart="16dp"
+                android:layout_centerVertical="true"
+                android:textColor="#465065"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:verticalScrollbarPosition="defaultPosition"
+                />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <!-- Avatar And Name -->
+        <LinearLayout
+            android:id="@+id/avatar_and_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/profile_photo2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal|top"
+                android:text="Jorge Mejia"
+                android:textColor="#465065"
+                android:textSize="32sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|top"
+                android:text="CC.1045718424"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <!-- Tags-->
+        <LinearLayout
+            android:id="@+id/tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/avatar_and_name"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="48dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|center"
+                    android:text="Miembro"
+                    android:textColor="#667085"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="2sp"
+                    android:translationY="-0.8sp"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginBottom="0dp"
+                    android:src="@drawable/card_credijamar" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/titulo_puntos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Puntos"
+                    android:textColor="#667085"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="2sp"
+                    android:translationY="-0.8sp"/>
+
+                <TextView
+                    android:id="@+id/valor_puntos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3400"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:textColor="#42C1AC"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Miembro Desde"
+                    android:textColor="#667085"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="2sp"
+                    android:translationY="-0.8sp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/titulo_miembros_desde"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2018"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:textColor="#667085"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_container"
+            android:layout_below="@id/tags"
+            android:orientation="horizontal"
+            android:background="#DCEDE9"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_centerHorizontal="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/card"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="53dp"
+                android:layout_marginVertical="12dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/card_title"
+                    android:text="¡Felicitaciones!"
+                    android:textColor="#137865"
+                    android:lineSpacingExtra="1sp"
+                    android:translationY="-0.4sp"
+                    android:gravity="center_horizontal|top"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/card_description"
+                    android:layout_below="@+id/card_title"
+                    android:text="Excelente comportamiento de pago."
+                    android:lineSpacingExtra="3sp"
+                    android:translationY="-1.6sp"
+                    android:gravity="center_horizontal|top"
+                    android:textSize="20sp"/>
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <!-- Month -->
+        <LinearLayout
+            android:id="@+id/month_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_container"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="207dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="21dp"
+                android:clipToOutline="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_border"
+                    android:backgroundTint="#CDE8E1"
+                    android:padding="20dp"
+                    android:src="@drawable/calendar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="4 Meses"
+                    android:textColor="#137865"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="21dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_border"
+                    android:backgroundTint="#FFDAD6"
+                    android:padding="20dp"
+                    android:src="@drawable/armchair" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|top"
+                    android:text="8 Meses"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#A61E1A"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_border"
+                    android:padding="20dp"
+                    android:backgroundTint="#CDE8E1"
+                    android:src="@drawable/calendar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="21dp"
+                    android:gravity="center_horizontal|top"
+                    android:text="12 Meses"
+                    android:textColor="#137865"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_border"
+                    android:backgroundTint="#CDE8E1"
+                    android:padding="20dp"
+                    android:clipToOutline="true"
+                    android:src="@drawable/calendar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal|top"
+                    android:lineSpacingExtra="2sp"
+                    android:text="18 Meses"
+                    android:textColor="#137865"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:translationY="-0.8sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- separator -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:id="@+id/separator"
+            android:layout_below="@+id/month_container"
+            android:background="@color/gris_base"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="182dp" />
+
+    </RelativeLayout>
+
+</ScrollView>
