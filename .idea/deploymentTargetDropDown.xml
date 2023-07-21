@@ -7,7 +7,9 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
+
             <value value="C:\Users\ralvarez\.android\avd\Nexus_6_API_23.avd" />
+
           </Key>
         </deviceKey>
       </Target>

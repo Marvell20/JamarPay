@@ -20,10 +20,13 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
     <color name="gris_base">#98A2B3</color>
 
     <!-- Colores para el navigation bar -->
     <color name="selected_item_navigationbar">#465065</color>
     <color name="unselected_item_navigationbar">#98A2B3</color>
+
+    <color name="button_Identity">#465065</color>
 
 </resources>
