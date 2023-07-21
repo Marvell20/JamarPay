@@ -78,7 +78,7 @@
                 android:id="@+id/TermsAndConditionsCancelButton"
                 android:layout_width="290dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/button_Identity"
                 android:text="@string/txt_rechazar"
                 android:textAllCaps="false"
                 android:paddingVertical="12dp"

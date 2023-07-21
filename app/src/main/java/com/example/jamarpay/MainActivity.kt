@@ -72,6 +72,8 @@
                     GlobalData.Identificacion = editText.text.toString()
 
                     if (checkBox.isChecked) {
+                        btnNext.isEnabled = true
+                        btnNext.setBackgroundColor(Color.parseColor("#465065"))
                         val intent = Intent(this@MainActivity, LoadingView::class.java)
                         startActivity(intent)
                         finish()
