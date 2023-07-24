@@ -22,7 +22,7 @@
     import retrofit2.Retrofit
     import retrofit2.converter.gson.GsonConverterFactory
     import common.GlobalData
-    import okhttp3.Dispatcher
+
 
     class MainActivity : AppCompatActivity(), DialogFragmentListener {
 
@@ -228,7 +228,7 @@
                         startActivity(intent)
                         finish()
                     } else {
-                        val intent = Intent(this@MainActivity, DeviceAlreadyProvisioned::class.java)
+                        val intent = Intent(this@MainActivity, BottomNavigationViewJamarPay::class.java)
                         startActivity(intent)
                         finish()
                     }
