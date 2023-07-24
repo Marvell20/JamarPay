@@ -22,7 +22,7 @@
     import retrofit2.Retrofit
     import retrofit2.converter.gson.GsonConverterFactory
     import common.GlobalData
-    import okhttp3.Dispatcher
+
 
     class MainActivity : AppCompatActivity(), DialogFragmentListener {
 
