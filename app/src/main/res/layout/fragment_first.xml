@@ -128,7 +128,7 @@
             android:layout_below="@+id/text_presentacion_tarjeta"
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/car_clienteoro">
+            android:background="@drawable/car_cliente_not_oro">
 
             <TextView
                 android:layout_width="wrap_content"

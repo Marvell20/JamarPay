@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +61,25 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_first, container, false);
+
+        boolean cliente_oro = false;
+
+        RelativeLayout contenedor_tarjeta = rootView.findViewById(R.id.contenedor_tarjeta);
+        TextView num_tarjeta = rootView.findViewById(R.id.numero_tarjeta);
+        TextView nombre_cliente_tarjeta = rootView.findViewById(R.id.titular_tarjeta);
+
+        if(cliente_oro){
+            contenedor_tarjeta.setBackgroundResource(R.drawable.car_clienteoro);
+            num_tarjeta.setText("456789-XX");
+            nombre_cliente_tarjeta.setText("Josue Orozco");
+        } else {
+            contenedor_tarjeta.setBackgroundResource(R.drawable.tarjeta_no_oro);
+            num_tarjeta.setText("456789-XX");
+            nombre_cliente_tarjeta.setText("Josue Orozco");
+        }
+
+
+        return rootView;
     }
 }
