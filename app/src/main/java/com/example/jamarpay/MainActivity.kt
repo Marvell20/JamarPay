@@ -92,7 +92,11 @@
                                 val segmento = response?.data?.segmento
                                 Log.i("el segmento es: ", segmento.toString())
 
-                                if (segmento == "ORO" || segmento == "PORO") {
+                                if (segmento == "ORO" || segmento == "PORO" || segmento == "EJEMPLAR" ||
+                                    segmento == "PEJEMPLAR" || segmento == "RENTABLE" || segmento == "PRENTABLE"
+                                    || segmento == "CLIENTE NUEVO")
+
+                                {
 
                                     validateWorkflowJamarpay("JA",GlobalData.Identificacion)
 

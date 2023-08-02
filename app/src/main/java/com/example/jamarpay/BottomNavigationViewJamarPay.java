@@ -19,6 +19,7 @@ public class BottomNavigationViewJamarPay extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_bottom_navigation_view);
 
         BottomNavigationView navigation = findViewById(R.id.bottom_navigation);
