@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f9fafb"
+        tools:context=".FirstFragment"
+        android:orientation="vertical"
+        android:layout_marginBottom="200dp">
+
+        <!-- TODO: Update blank fragment layout -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/logo_credijamar"
+            android:src="@drawable/card_jamar"
+            android:layout_margin="16dp"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/texto_saludos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logo_credijamar"
+            android:layout_marginHorizontal="16dp"
+            android:lineSpacingExtra="1sp"
+            android:translationY="-0.4sp"
+            android:gravity="top"
+            android:text="Buenos días,"
+            android:textColor="#465065"
+            android:textSize="16sp"
+            android:fontFamily="@font/lato"/>
+
+        <TextView
+            android:id="@+id/texto_nombre_completo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/texto_saludos"
+            android:layout_marginHorizontal="16dp"
+            android:lineSpacingExtra="3sp"
+            android:translationY="-1.6sp"
+            android:gravity="top"
+            android:text="Jorge Mejia"
+            android:textColor="#465065"
+            android:textSize="24sp"
+            android:fontFamily="@font/lato"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mensaje_compartir_codigo"
+            android:text="Comparte esta clave con tu asesor."
+            android:textSize="14sp"
+            android:textColor="#667085"
+            android:layout_below="@+id/texto_nombre_completo"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"/>
+
+        <!-- contenedor del codigo -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/contenedor_codigo"
+            android:layout_below="@+id/mensaje_compartir_codigo"
+            android:background="@drawable/border_radious"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/icono_candado"
+                android:background="@drawable/rounded_corners"
+                android:backgroundTint="#137865"
+                android:src="@drawable/lock"
+                android:layout_centerVertical="true"
+                android:padding="6dp"
+                />
+
+            <TextView
+                android:id="@+id/codigo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:letterSpacing="0.16"
+                android:text="789765"
+                android:textSize="24sp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/icono_candado"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/clipboard"
+                android:text="Copiar"
+                android:textSize="12sp"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="10dp"
+                android:fontFamily="@font/lato"
+                android:textColor="#FFFFFF"
+                android:layout_alignParentRight="true"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_presentacion_tarjeta"
+            android:layout_below="@id/contenedor_codigo"
+            android:layout_margin="16dp"
+            android:text="Te presentamos tu tarjeta Credijamar junto a tu cupo disponible."
+            android:lineHeight="20sp"
+            android:textColor="#667085"
+            android:textSize="16sp"/>
+
+        <RelativeLayout
+            android:id="@+id/contenedor_tarjeta"
+            android:layout_width="match_parent"
+            android:layout_height="212dp"
+            android:layout_below="@+id/text_presentacion_tarjeta"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/car_cliente_not_oro">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/numero_tarjeta"
+                android:layout_alignParentRight="true"
+                android:text="ABCD 0000 0000"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/geomanist_bold"
+                android:textFontWeight="500"
+                android:layout_marginRight="15dp"
+                android:lineSpacingExtra="0dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/titular_tarjeta"
+                android:layout_below="@+id/numero_tarjeta"
+                android:layout_alignParentRight="true"
+                android:text="Jorge Mejía"
+                android:textColor="#667085"
+                android:textSize="10sp"
+                android:fontFamily="@font/geomanist"
+                android:layout_marginRight="15dp"
+                android:lineSpacingExtra="0dp"
+                android:layout_marginBottom="10dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/contenedor_cupo_disponible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contenedor_tarjeta"
+            android:layout_marginBottom="100dp"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/border_radious"
+            android:backgroundTint="#FFFFFF"
+            android:layout_alignParentLeft="true"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/icono_cupo_disponible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icono_cupo_disponible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/texto_cupo_disponible"
+                android:layout_marginTop="8dp"
+                android:layout_below="@+id/icono_cupo_disponible"
+                android:text="Tu cupo disponible"
+                android:textSize="14sp"
+                android:textColor="#667085"
+                android:lineSpacingExtra="3sp"
+                android:translationY="-1.6sp"
+                android:gravity="top"
+                android:lineHeight="20sp"
+                android:fontFamily="@font/lato"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/valor_cupo_disponible"
+                android:layout_below="@+id/texto_cupo_disponible"
+                android:text="$22.500.000"
+                android:textColor="#667085"
+                android:textFontWeight="700"
+                android:fontFamily="@font/lato_bold"
+                android:textSize="20sp"
+                android:lineSpacingExtra="0sp"
+                android:gravity="top" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/contenedor_saldo_disponible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contenedor_tarjeta"
+           android:layout_marginRight="16dp"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/border_radious"
+            android:backgroundTint="#FFFFFF"
+            android:layout_alignParentRight="true"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/icono_saldo_disponible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icono_saldo_disponible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/texto_saldo_disponible"
+                android:layout_marginTop="8dp"
+                android:layout_below="@+id/icono_saldo_disponible"
+                android:text="Saldo disponible"
+                android:textSize="14sp"
+                android:textColor="#667085"
+                android:lineSpacingExtra="3sp"
+                android:translationY="-1.6sp"
+                android:gravity="top"
+                android:lineHeight="20sp"
+                android:fontFamily="@font/lato"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/valor_saldo_disponible"
+                android:layout_below="@+id/texto_saldo_disponible"
+                android:text="$10.600.000"
+                android:textColor="#667085"
+                android:textFontWeight="700"
+                android:fontFamily="@font/lato_bold"
+                android:textSize="20sp"
+                android:lineSpacingExtra="0sp"
+                android:gravity="top" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

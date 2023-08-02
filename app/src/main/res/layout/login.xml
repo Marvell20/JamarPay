@@ -176,6 +176,7 @@
                     android:layout_marginTop="2dp"
                     app:backgroundTint="@color/button_Identity"
                     android:allowClickWhenDisabled="false"
+                    android:backgroundTint="#465065"
                     android:enabled="false"
                     android:fontFamily="@font/geomanist_regular"
                     android:text="Verifica mi identidad"

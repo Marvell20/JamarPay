@@ -22,7 +22,7 @@
     import retrofit2.Retrofit
     import retrofit2.converter.gson.GsonConverterFactory
     import common.GlobalData
-
+    import okhttp3.Dispatcher
 
     class MainActivity : AppCompatActivity(), DialogFragmentListener {
 
@@ -72,8 +72,6 @@
                     GlobalData.Identificacion = editText.text.toString()
 
                     if (checkBox.isChecked) {
-                        btnNext.isEnabled = true
-                        btnNext.setBackgroundColor(Color.parseColor("#465065"))
                         val intent = Intent(this@MainActivity, LoadingView::class.java)
                         startActivity(intent)
                         finish()
@@ -92,10 +90,12 @@
                             if (goldClient.isSuccessful) {
                                 val response = goldClient.body()
                                 val segmento = response?.data?.segmento
+                                Log.i("el segmento es: ", segmento.toString())
 
                                 if (segmento == "ORO" || segmento == "PORO") {
 
                                     validateWorkflowJamarpay("JA",GlobalData.Identificacion)
+
 
                                 } else {
                                     val intent = Intent(this@MainActivity, UnconfirmedIdentity::class.java)
@@ -228,7 +228,7 @@
                         startActivity(intent)
                         finish()
                     } else {
-                        val intent = Intent(this@MainActivity, BottomNavigationViewJamarPay::class.java)
+                        val intent = Intent(this@MainActivity, DeviceAlreadyProvisioned::class.java)
                         startActivity(intent)
                         finish()
                     }
