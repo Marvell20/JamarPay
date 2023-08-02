@@ -20,6 +20,8 @@ class DeviceProvisioning: AppCompatActivity() {
 
         val runnable = Runnable{
             val intent = Intent(this@DeviceProvisioning, BottomNavigationViewJamarPay::class.java)
+            startActivity(intent)
+            finish()
         }
 
         handler.postDelayed(runnable,delayMillis)
